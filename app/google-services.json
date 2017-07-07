@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "955153090926",
+    "firebase_url": "https://music7-94708.firebaseio.com",
+    "project_id": "music7-94708",
+    "storage_bucket": "music7-94708.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955153090926:android:cd3ec3cd9c48dfd9",
+        "android_client_info": {
+          "package_name": "musicshow.willokans.com.music7"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955153090926-9u3ra3uhc3tqosfp545f9pelhltocmnt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "musicshow.willokans.com.music7",
+            "certificate_hash": "e3d4046b9fbb4a6b3c97127a60aac5155436ae1b"
+          }
+        },
+        {
+          "client_id": "955153090926-age4m60sv8c2vem3moqe3b043jpbphdp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASkZquawVQfU365DqNOGLIN-lkxnYVN_8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955153090926-age4m60sv8c2vem3moqe3b043jpbphdp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

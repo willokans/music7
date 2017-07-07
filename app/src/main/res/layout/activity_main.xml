@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_google_signin_btn_text_dark_pressed"
+    tools:context="musicshow.willokans.com.music7.MainActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        app:srcCompat="@mipmap/ongaku" />
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="casual"
+        android:text="Music7"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/favMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:width="275dp"
+        android:text="Your favorite music will be available on all of your devices"
+        android:textAlignment="center"
+        android:textSize="15dp" />
+
+
+    <TextView
+        android:id="@+id/notReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/favMusic"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
+        android:text="Not Registered?"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/mainRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/notReg"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:width="275dp"
+        android:height="30dp"
+        android:background="@drawable/btn_background"
+        android:text="Sign up your with email" />
+
+    <TextView
+        android:id="@+id/alreadyHaveAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mainRegister"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
+        android:text="Already have an account?"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/mainSignInBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/alreadyHaveAcc"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:width="275dp"
+        android:height="30dp"
+        android:background="@drawable/btn_background"
+        android:text="Sign In" />
+
+    <TextView
+        android:id="@+id/maintandc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mainSignInBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="70dp"
+        android:text="Terms of Service"
+        android:textAlignment="center" />
+
+
+</RelativeLayout>
