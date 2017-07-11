@@ -25,7 +25,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".EventHomePage" />
-        <activity android:name=".EventDetails"></activity>
+        <activity android:name=".EventDetails" />
     </application>
 
 </manifest>
