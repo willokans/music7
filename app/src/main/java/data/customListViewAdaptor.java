@@ -25,6 +25,7 @@ import musicshow.willokans.com.music7.R;
 
 /**
  * Created by willokans on 09/07/2017.
+ * This will take our list_row.xml and create a custom list view
  */
 
 public class customListViewAdaptor extends ArrayAdapter<Event> {
