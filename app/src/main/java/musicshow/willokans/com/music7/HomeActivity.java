@@ -3,6 +3,7 @@ package musicshow.willokans.com.music7;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -31,13 +32,11 @@ public class HomeActivity extends AppCompatActivity {
 
     private customListViewAdaptor adapter;
     private ArrayList<Event> events = new ArrayList<>();
-    private String urlLeft = "http://api.eventful.com/rest/events/search?...&q=music&q=musical&q=jazz&q=concert&q=rock%20music&where=";
+    private String urlLeft = "http://api.eventful.com/json/events/search?...&q=music&q=band&where=";
     private String apiKey = "&app_key=Jztd9tB4rN22MnHB";
     private ListView listView;
     private TextView selectedCity;
 
-    //api url string
-    private String url = "http://api.eventful.com/json/events/search?...&q=music&where=Dublin&app_key=Jztd9tB4rN22MnHB";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +47,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        getEvent("Lagos");
-
-
-
-
+        getEvent("chicago");
 
 
 
@@ -71,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
         //append both url left and right with the city parameter
         String finalUrl = urlLeft+city+ apiKey;
 
+
         JsonObjectRequest eventRequest = new JsonObjectRequest(Request.Method.GET,
                 finalUrl, (JSONObject) null, new Response.Listener<JSONObject>() {
             @Override
@@ -78,31 +74,74 @@ public class HomeActivity extends AppCompatActivity {
 
                 try {
                     JSONObject eventsObject = response.getJSONObject("events");
-                    System.out.println("got eventsObject");
+                    Log.v("Data: ", eventsObject.toString());
 
-                    //get the event array from the events object
+                    //get event array
                     JSONArray eventsArray = eventsObject.getJSONArray("event");
-                    System.out.println("got eventsArray");
 
-                    //loop throug array to get information
+                    //loop through array to get information
                     for (int i =0; i < eventsArray.length(); i++) {
 
-                        //create another Json object inside the the eventArray
+                        //create a json object to get info in each event array
                         JSONObject jsonObject = eventsArray.getJSONObject(i);
-                        System.out.println("got jsonObject");
 
-                        //Get artist object
-                        JSONObject artistObject = jsonObject.getJSONObject("title");
-                        System.out.println("got artistobject");
-                        String headlinerText = artistObject.getString("title");
-                        System.out.println("HeadLiner: " + headlinerText);
+                        //get Artist
+                        String HeadlinerText = jsonObject.getString("title");
+                        Log.v("HeadlinerText: ", HeadlinerText);
+
+                        //get Venue name
+                        String venueName = jsonObject.getString("venue_name");
+                        if (venueName == "null") {
+                            Log.v("Venue Name: ", "TBC");
+
+                        } else {
+                            Log.v("Venue Name: ", venueName);
+                        }
+
+
+                        //get Venue location
+                        String venueStreet = jsonObject.getString("venue_address");
+                        Log.v("Street: ", venueStreet);
+                        String venueCity = jsonObject.getString("city_name");
+                        Log.v("City: ", venueCity);
+                        String venueCountry = jsonObject.getString("country_abbr");
+                        Log.v("Country: ", venueCountry);
+
+                        //get start Data and time
+                        String startDataAndTime = jsonObject.getString("start_time");
+                        Log.v("Start Date and Time: ", startDataAndTime);
+
+                        //get Website url
+                        String website = jsonObject.getString("url");
+                        if (website == "null") {
+                            Log.v("website: ", "TBC");
+
+                        } else {
+                            Log.v("website: ", website);
+                        }
+
+
+                        //get url image
+                        String venueTest = jsonObject.getString("image");
+                        if (venueTest == "null") {
+                            System.out.println("No Image");
+
+                        } else {
+                            JSONObject imageObject = jsonObject.getJSONObject("image");
+                            JSONObject imageSize = imageObject.getJSONObject("medium");
+
+                            //get image
+                            String imageUrl = imageSize.getString("url");
+                            Log.v("Image: ", imageUrl);
+                        }
+
+
+
                     }
 
-                    System.out.println("EVENTS " + eventsObject);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
