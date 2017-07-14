@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
     tools:context="musicshow.willokans.com.music7.HomeActivity">
 
 
@@ -22,10 +21,11 @@
             android:id="@+id/selectedLocationText"
             android:textColor="#fff"
             android:text="Selected City:"
+            android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
             android:paddingLeft="4dp"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content" />
 
     </LinearLayout>

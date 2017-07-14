@@ -2,17 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/action_setting"
-        android:title="Setting"
-        android:orderInCategory="100"
-        android:icon="@mipmap/ic_settings_black_24dp"
-        app:showAsAction="" />
+    <!--<item-->
+        <!--android:id="@+id/action_setting"-->
+        <!--android:title="Setting"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:icon="@mipmap/ic_settings_black_24dp"-->
+        <!--app:showAsAction="" />-->
 
     <item
-        android:id="@+id/action_search"
-        android:title="Search"
-        android:icon="@mipmap/ic_search_black_24dp"
+        android:id="@+id/action_changeLocationID"
+        android:title="@string/change_locationId"
         android:orderInCategory="101"
         app:showAsAction="always" />
 

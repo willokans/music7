@@ -1,12 +1,16 @@
 package musicshow.willokans.com.music7;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import Util.Preference;
 import data.customListViewAdaptor;
 import model.Event;
 
@@ -45,13 +50,21 @@ public class HomeActivity extends AppCompatActivity {
 
 
         listView = (ListView) findViewById(R.id.list);
+        selectedCity = (TextView) findViewById(R.id.selectedLocationText);
 
 //        instantiate our custom adaptor
         adapter = new customListViewAdaptor(HomeActivity.this, R.layout.list_row, events);
         listView.setAdapter(adapter);
 
+        //instantiate Preference class
+        Preference pref = new Preference(HomeActivity.this);
+        String city = pref.getCity().toUpperCase();
 
-        getEvent("dublin");
+        //set default city name
+        selectedCity.setText(city);
+
+
+        showEvents(city);
 
 
     }
@@ -191,26 +204,81 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_search:
-                Toast.makeText(getApplicationContext(), "Search option selected", Toast.LENGTH_LONG).show();
+            case R.id.action_changeLocationID:
+                //call on the input dialog method
+                showInputDialog();
                 return true;
             case R.id.action_exit:
                 //Write own logic
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(HomeActivity.this, MainActivity.class));
                 return true;
-            case R.id.action_setting:
-                Toast.makeText(getApplicationContext(), "setting option selected", Toast.LENGTH_LONG).show();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
         }
 
+
     }
 
+    //Create an Alert dialog with will contain an editText where user can type in their city of choice
+    private void showInputDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this, R.style.MyDialogTheme);
+        builder.setTitle("Change City");
+
+        final EditText cityInput = new EditText(HomeActivity.this);
+        //set input type to text
+        cityInput.setInputType(InputType.TYPE_CLASS_TEXT);
+        //set hint
+        cityInput.setHint("dublin ...");
+        //insert the input into the edit text
+        builder.setView(cityInput);
+
+        //set onclick listener for submit button
+        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                //call our preference class
+                Preference cityPreference = new Preference(HomeActivity.this);
+
+                cityPreference.setCity(cityInput.getText().toString());
+                String updatedCity = cityPreference.getCity();
+
+                //showing updated city by user on the Selected city text view on the homeactivity
+                String newCity = updatedCity.toUpperCase();
+                selectedCity.setText(newCity);
+
+                //re-render everything again
+                showEvents(newCity);
 
 
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        //create alert dialog
+        AlertDialog alertDialog = builder.create();
+
+        //show the dialog alert
+        alertDialog.show();
+
+
+
+    }
+
+    //call the get event method in this class and pass in the city
+    private void showEvents(String city) {
+        getEvent(city);
+
+    }
 
 
 }
