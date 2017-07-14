@@ -32,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private customListViewAdaptor adapter;
     private ArrayList<Event> events = new ArrayList<>();
-    private String urlLeft = "http://api.eventful.com/json/events/search?...&q=music&q=band&where=";
+    private String urlLeft = "http://api.eventful.com/json/events/search?...&q=band&where=";
     private String apiKey = "&app_key=Jztd9tB4rN22MnHB";
     private ListView listView;
     private TextView selectedCity;
@@ -43,12 +43,15 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        hSignOut = (Button) findViewById(R.id.hSignOut);
+
+        listView = (ListView) findViewById(R.id.list);
+
+//        instantiate our custom adaptor
+        adapter = new customListViewAdaptor(HomeActivity.this, R.layout.list_row, events);
+        listView.setAdapter(adapter);
 
 
-
-        getEvent("chicago");
-
+        getEvent("dublin");
 
 
     }
@@ -56,15 +59,16 @@ public class HomeActivity extends AppCompatActivity {
 
     /**
      * mehtod to get event based on the city
+     *
      * @Param: city
      */
-    private void getEvent (String city) {
+    private void getEvent(String city) {
 
         //clear data first
         events.clear();
 
         //append both url left and right with the city parameter
-        String finalUrl = urlLeft+city+ apiKey;
+        String finalUrl = urlLeft + city + apiKey;
 
 
         JsonObjectRequest eventRequest = new JsonObjectRequest(Request.Method.GET,
@@ -80,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
                     JSONArray eventsArray = eventsObject.getJSONArray("event");
 
                     //loop through array to get information
-                    for (int i =0; i < eventsArray.length(); i++) {
+                    for (int i = 0; i < eventsArray.length(); i++) {
 
                         //create a json object to get info in each event array
                         JSONObject jsonObject = eventsArray.getJSONObject(i);
@@ -122,8 +126,10 @@ public class HomeActivity extends AppCompatActivity {
 
 
                         //get url image
-                        String venueTest = jsonObject.getString("image");
-                        if (venueTest == "null") {
+                        String imageUrl = " ";
+
+                        String venueURL = jsonObject.getString("image");
+                        if (venueURL == "null") {
                             System.out.println("No Image");
 
                         } else {
@@ -131,13 +137,31 @@ public class HomeActivity extends AppCompatActivity {
                             JSONObject imageSize = imageObject.getJSONObject("medium");
 
                             //get image
-                            String imageUrl = imageSize.getString("url");
+                            imageUrl = imageSize.getString("url");
                             Log.v("Image: ", imageUrl);
                         }
 
 
 
+                        //instantiate our events object
+                        Event event = new Event();
+
+                        event.setHeadLiner(HeadlinerText);
+                        event.setVenueName(venueName);
+                        event.setStreet(venueStreet);
+                        event.setCity(venueCity);
+                        event.setCountry(venueCountry);
+                        event.setUrl(imageUrl);
+                        event.setWebsite(website);
+                        event.setStartData(startDataAndTime);
+
+                        //call our events array list to hold all out event objects
+                        events.add(event);
+
+
                     }
+
+                    adapter.notifyDataSetChanged();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -153,7 +177,6 @@ public class HomeActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(eventRequest);
 
     }
-
 
 
     //for Action bar
@@ -185,6 +208,8 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
+
+
 
 
 
