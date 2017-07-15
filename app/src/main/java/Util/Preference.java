@@ -34,7 +34,7 @@ public class Preference {
     //if use has not chosen a city, return default
     public String getCity() {
 
-        return preferences.getString("city", "Dublin");
+        return preferences.getString("city", "dublin");
     }
 
 

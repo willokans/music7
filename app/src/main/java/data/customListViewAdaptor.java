@@ -2,6 +2,8 @@ package data;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 
 import model.Event;
 import musicshow.willokans.com.music7.AppController;
+import musicshow.willokans.com.music7.EventHomePage;
 import musicshow.willokans.com.music7.R;
 
 /**
@@ -109,6 +112,25 @@ public class customListViewAdaptor extends ArrayAdapter<Event> {
         viewHolder.bandImgae.setImageUrl(viewHolder.event.getUrl(), imageLoader);
         viewHolder.website = viewHolder.event.getWebsite();
 
+
+        //get all the instance above in one instance to set onClick listener
+        final ViewHolder finalViewHolder = viewHolder;
+        row.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //with the Serializable implemented in Event class we can compact all the start of the events objects
+                Intent i = new Intent(mContext, EventHomePage.class);
+                //To send as a buddle
+                Bundle mBundle = new Bundle();
+                mBundle.putSerializable("eventObj", finalViewHolder.event);
+                //
+                i.putExtras(mBundle);
+                mContext.startActivity(i);
+
+
+            }
+        });
 
 
 
