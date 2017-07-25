@@ -213,6 +213,10 @@ public class HomeActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(HomeActivity.this, MainActivity.class));
                 return true;
+            case R.id.action_chat:
+                //Write own logic
+                startActivity(new Intent(HomeActivity.this, ChatActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -279,6 +283,8 @@ public class HomeActivity extends AppCompatActivity {
         getEvent(city);
 
     }
+
+    
 
 
 }

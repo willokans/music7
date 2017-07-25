@@ -15,4 +15,11 @@
         android:icon="@mipmap/ic_exit_to_app_black_24dp"
         android:orderInCategory="102"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_chat"
+        android:title="Chat"
+        android:icon="@drawable/ic_chat_black_24dp"
+        android:orderInCategory="102"
+        app:showAsAction="always" />
 </menu>

@@ -90,6 +90,10 @@ public class EventHomePage extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(EventHomePage.this, MainActivity.class));
                 return true;
+            case R.id.action_chat:
+                //Write own logic
+                startActivity(new Intent(EventHomePage.this, ChatActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
