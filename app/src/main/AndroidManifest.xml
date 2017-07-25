@@ -9,8 +9,8 @@
     <application
         android:name=".AppController"
         android:allowBackup="true"
-        android:logo="@drawable/ongaku"
         android:label=""
+        android:logo="@drawable/ongaku"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -26,6 +26,7 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".EventHomePage" />
         <activity android:name=".EventDetails" />
+        <activity android:name=".ChatActivity"></activity>
     </application>
 
 </manifest>
