@@ -30,6 +30,12 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
 
+        //back arrow action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+
         // Load chat room contents
         displayChatMessages();
 
@@ -58,6 +64,15 @@ public class ChatActivity extends AppCompatActivity {
         });
 
 
+
+
+    }
+
+    //over ride back row action bar with method
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
 
@@ -65,7 +80,7 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //add items into the action bar
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.chatpage, menu);
 
         return true;
     }

@@ -3,4 +3,5 @@
     <string name="title_activity_test_test">testTest</string>
     <string name="change_locationId">Change City</string>
     <string name="Go_To_Website"></string>
+    <string name="go_to_home">HOME</string>
 </resources>

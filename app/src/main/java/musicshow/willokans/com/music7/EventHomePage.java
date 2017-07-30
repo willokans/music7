@@ -36,6 +36,9 @@ public class EventHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_home_page);
 
+        //back arrow action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         //get serialized object from customListViewAdaptor class
         event = (Event) getIntent().getSerializableExtra("eventObj");
 
@@ -56,6 +59,13 @@ public class EventHomePage extends AppCompatActivity {
 
 
 
+    }
+
+    //over ride back row action bar with method
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     @Override
